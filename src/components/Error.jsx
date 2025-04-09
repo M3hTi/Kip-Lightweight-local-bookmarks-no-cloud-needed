@@ -1,5 +1,5 @@
-function Error({ children }) {
-  return <span>{children}</span>;
+function Error({ children, className = "" }) {
+  return <span className={className}>{children}</span>;
 }
 
 export default Error;
