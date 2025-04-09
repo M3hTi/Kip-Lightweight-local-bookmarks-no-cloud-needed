@@ -24,7 +24,6 @@
   line-height: 57px;
   text-align: center;
   margin: 0;
-  color: white;
   letter-spacing: 0.2px;
 }
 
@@ -35,7 +34,6 @@
   line-height: 1.4rem;
   text-align: center;
   margin: 10px 0;
-  color: white;
 }
 
 .contactFormContainer {
@@ -86,4 +84,9 @@
   background: linear-gradient(39.97deg, #03d6f3 0.79%, #458ff6 79.29%);
   cursor: pointer;
   transition: all 0.3s;
+}
+
+.errMsg {
+  color: red;
+  font-size: 12px;
 }

@@ -33,7 +33,7 @@ function Contact() {
               })}
             />
             {errors.email && (
-              <Error>
+              <Error className={styles.errMsg}>
                 {errors.email.message || "Please Enter Your Email!"}
               </Error>
             )}
@@ -49,7 +49,9 @@ function Contact() {
               })}
             ></textarea>
             {errors.message && (
-              <Error>Your Message must be contain at least 10 character</Error>
+              <Error className={styles.errMsg}>
+                Your Message must be contain at least 10 character
+              </Error>
             )}
             <button type="submit" className={styles.contactButton}>
               Send Email
