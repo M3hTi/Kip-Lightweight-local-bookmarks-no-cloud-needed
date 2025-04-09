@@ -1,5 +1,5 @@
 :root {
-  --primaryBg: #092537;
+  --primaryBg: #0c2a3d;
 }
 *,
 *::after,
@@ -11,5 +11,5 @@ body {
   background-color: var(--primaryBg);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
-  color: white;
+  /* color: white; */
 }
