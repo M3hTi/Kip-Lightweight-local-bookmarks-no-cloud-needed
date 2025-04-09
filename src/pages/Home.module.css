@@ -11,6 +11,7 @@
   padding: 100px 10%;
   box-sizing: border-box;
   min-height: 100vh;
+  background-color: var(--primaryBg);
 }
 
 .headerText h1 {
