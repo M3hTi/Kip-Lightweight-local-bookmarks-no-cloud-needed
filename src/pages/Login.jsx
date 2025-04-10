@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import Error from "../components/Error";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
 
 function Login() {
   const {
@@ -10,9 +12,22 @@ function Login() {
     formState: { errors },
   } = useForm();
 
+  const { login, isAuthenticate } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticate) {
+      navigate("/app");
+    }
+  }, [isAuthenticate, navigate]);
+
   function submit(data) {
     console.log("submitted");
-    console.log(data);
+    // console.log(data);
+    const { username, password } = data;
+
+    login(username, password);
   }
   return (
     <main>
@@ -25,19 +40,17 @@ function Login() {
           <form onSubmit={handleSubmit(submit)}>
             <div className={styles.inputGroup}>
               <input
-                {...register("email", {
+                {...register("username", {
                   required: true,
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  },
+                  minLength: 5,
+                  maxLength: 5,
                 })}
-                placeholder="Email"
+                placeholder="username"
                 className={styles.inputBox}
               />
-              {errors.email && (
+              {errors.username && (
                 <Error className="errMsg">
-                  {errors.email.message || "Please Enter Your Email"}
+                  Your user name must be contain exactly 5 characters
                 </Error>
               )}
             </div>
