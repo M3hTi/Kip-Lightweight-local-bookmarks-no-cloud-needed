@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import AddPost from "./components/AddPost";
 import Posts from "./components/Posts";
 import { PostsProvider } from "./contexts/PostsContext";
+import SelectedPost from "./components/SelectedPost";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route index element={<Navigate to="posts" replace />} />
                 <Route path="add" element={<AddPost />} />
                 <Route path="posts" element={<Posts />} />
+                <Route path="posts/:id" element={<SelectedPost />} />
               </Route>
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
