@@ -25,13 +25,13 @@ function PostsProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
+    const controller = new AbortController();
+    const signal = controller.signal;
     async function getPosts() {
       try {
         dispatch({ type: "loading" });
         const res = await fetch(`http://localhost:8000/posts`, {
-            signal
+          signal,
         });
         if (!res.ok) throw new Error(`Error: ${res.statusText}`);
         const data = await res.json();
@@ -39,16 +39,12 @@ function PostsProvider({ children }) {
         dispatch({ type: "getPosts", payload: data });
       } catch (error) {
         console.log(error);
-      } finally {
-        dispatch({type: "idle"})
       }
     }
 
     getPosts();
 
-
     return () => controller.abort();
-
   }, []);
 
   const { posts, status } = state;
