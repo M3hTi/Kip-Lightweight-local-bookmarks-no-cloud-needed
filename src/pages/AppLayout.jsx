@@ -4,11 +4,11 @@ import { useAuth } from "../contexts/AuthContext";
 
 function AppLayout() {
   const { logout } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  function handleLogOut(){
-    logout()
-    navigate("/")
+  function handleLogOut() {
+    logout();
+    navigate("/");
   }
   return (
     <div className={styles.container}>

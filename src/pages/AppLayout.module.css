@@ -70,6 +70,7 @@
 }
 
 .item:nth-child(3) {
+  width: 70%;
   flex-grow: 1;
   /* height: 75%; */
   background: var(--secondaryBg);
