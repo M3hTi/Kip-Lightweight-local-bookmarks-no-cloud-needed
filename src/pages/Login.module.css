@@ -1,0 +1,92 @@
+.loginContainer {
+  min-height: 100vh;
+  position: relative;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primaryBg);
+}
+
+.formContainer {
+  background: var(--secondaryBg);
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 31px #00000026;
+}
+
+.headerText {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.headerText h1 {
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--primaryBg);
+  margin-bottom: 10px;
+}
+
+.headerText p {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #666;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputBox {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 40px;
+  font-size: 1rem;
+  box-shadow: 0 2px 2px #00000040;
+  transition: all 0.3s ease;
+}
+
+.inputBox:focus {
+  outline: none;
+  border-color: #458ff6;
+  box-shadow: 0 2px 8px #458ff640;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 35px;
+  background: linear-gradient(39.97deg, #03d6f3 0.79%, #458ff6 79.29%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover{
+    box-shadow: 1px 10px 32px #00000073;
+  }
+}
+
+
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.footer a {
+  color: #458ff6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
