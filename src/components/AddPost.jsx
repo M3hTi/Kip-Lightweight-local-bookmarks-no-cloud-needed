@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Error from "./Error";
 import styles from "./AddPost.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { usePosts } from "../contexts/PostsContext";
 
 function AddPost() {
   const [date, setDate] = useState(new Date());
@@ -11,11 +12,33 @@ function AddPost() {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
+
+  const { addPost } = usePosts();
 
   function submit(data) {
     console.log("submitted");
-    console.log(data);
+    // console.log(data);
+    const { content, tags, title, url, date: newDate } = data;
+
+    const formatted = new Date(newDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+
+    const post = {
+      title,
+      body: content,
+      date: formatted,
+      tags: tags.split(","),
+      url,
+    };
+
+    // console.log(post);
+
+    addPost(post)
   }
   return (
     <div className={styles.formContainer}>
@@ -37,10 +60,18 @@ function AddPost() {
         </div>
 
         <div className={styles.inputGroup}>
-          <DatePicker
-            className={styles.input}
-            selected={date}
-            onChange={(date) => setDate(date)}
+          <Controller
+            control={control}
+            name="date"
+            defaultValue={new Date()}
+            render={({ field }) => (
+              <DatePicker
+                placeholderText="Select date"
+                selected={field.value}
+                onChange={(date) => field.onChange(date)}
+                className={styles.input}
+              />
+            )}
           />
         </div>
 
