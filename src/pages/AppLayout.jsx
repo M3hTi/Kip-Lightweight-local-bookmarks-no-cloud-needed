@@ -18,7 +18,7 @@ function AppLayout() {
         </Link>
         <div className={styles.headerRight}>
           <a
-            href="https://github.com/yourusername/Kip"
+            href="https://github.com/M3hTi/Kip-Lightweight-local-bookmarks-no-cloud-needed"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.githubLink}
@@ -51,13 +51,13 @@ function AppLayout() {
       <div className={styles.item}>
         <NavLink
           to="posts"
-          //   className={({ isActive }) => (isActive ? styles.active : "")}
+          className={({ isActive }) => (isActive ? styles.active : "")}
         >
           My Posts
         </NavLink>
         <NavLink
           to="add"
-          //   className={({ isActive }) => (isActive ? styles.active : "")}
+          className={({ isActive }) => (isActive ? styles.active : "")}
         >
           Add New Post
         </NavLink>
