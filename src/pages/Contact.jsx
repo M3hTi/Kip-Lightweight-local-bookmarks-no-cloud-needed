@@ -33,7 +33,7 @@ function Contact() {
               })}
             />
             {errors.email && (
-              <Error className={styles.errMsg}>
+              <Error className="errMsg">
                 {errors.email.message || "Please Enter Your Email!"}
               </Error>
             )}
@@ -49,7 +49,7 @@ function Contact() {
               })}
             ></textarea>
             {errors.message && (
-              <Error className={styles.errMsg}>
+              <Error className="errMsg">
                 Your Message must be contain at least 10 character
               </Error>
             )}
