@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  align-content: start;
+}
+
+.item:nth-child(1) {
+  width: 100%;
+  height: 5%;
+}
+
+.item:nth-child(2) {
+  width: 25%;
+  height: 75%;
+}
+
+.item:nth-child(3) {
+  flex-grow: 1;
+  height: 75%;
+}
