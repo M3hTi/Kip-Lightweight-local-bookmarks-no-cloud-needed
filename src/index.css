@@ -22,3 +22,13 @@ body {
   color: red;
   font-size: 12px;
 }
+
+.clean-link {
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s;
+
+  &:hover {
+    color: white;
+  }
+}
