@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
+import Tag from "./Tag";
 
 const Post = ({ postObj }) => {
   const { body, date, tags, title, url, id } = postObj;
@@ -28,6 +29,12 @@ const Post = ({ postObj }) => {
       </div>
       <div className={styles["post-footer"]}>
         <div className={styles["post-comments"]}>
+          <span>
+            {tags.map((tag) => (
+              <Tag tag={tag} />
+            ))}
+          </span>
+
           <button className={styles["post-comment-btn"]}>
             <Link className="clean-link" to={`${id}`}>
               see Full Post
