@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import AppLayout from "./pages/AppLayout";
 import Contact from "./pages/Contact";
@@ -17,8 +17,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/app" element={<AppLayout />}>
+              <Route index element={<Navigate to="posts" replace />} />
               <Route path="add" element={<AddPost />} />
-              <Route path="posts"  element={<Posts />} />
+              <Route path="posts" element={<Posts />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
