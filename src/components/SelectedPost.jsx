@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { usePosts } from "../contexts/PostsContext";
+import Tag from "./Tag";
 import styles from "./SelectedPost.module.css";
 function SelectedPost() {
   const { id } = useParams();
@@ -28,7 +29,9 @@ function SelectedPost() {
 
       <div className={styles["post-footer"]}>
         <div className={styles["post-tags"]}>
-          
+          {tags.map((tag) => (
+            <Tag tag={tag} />
+          ))}
         </div>
       </div>
     </article>
