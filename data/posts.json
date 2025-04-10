@@ -1,20 +1,3 @@
 {
-  "posts": [
-    {
-      "title": "handle State",
-      "body": "Preferred method for handling state:\n\n- UI -> useState \n\n- business logic -> useReducer \n\n- server -> useQuery",
-      "date": "01/01/2025",
-      "tags": ["React", "learning"],
-      "url": "",
-      "id": "239815"
-    },
-    {
-      "title": "7 Strategies To Help You Remember 80% of Everything You Read",
-      "body": "Essentially, you review what you’ve learned at regular intervals after you learn something.\n\nThere are many strategies you can use to do this, but the one strategy that I recommend you use is what’s known as “The Rule of 5.”\n\nThe Rule of 5 says that after you learn something you want to remember long-term, you should ideally review the piece of information you’re trying to memorize at the following intervals:",
-      "date": "01/04/2025",
-      "tags": ["GEEK", "AI"],
-      "url": "https://readmedium.com/7-strategies-to-help-you-remember-80-of-everything-you-read-80d694445f53",
-      "id": "100152"
-    }
-  ]
+  "posts": []
 }
