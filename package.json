@@ -13,6 +13,7 @@
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.3",
     "ldrs": "^1.1.6",
+    "nanoid": "^5.1.5",
     "react": "^19.0.0",
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.0.0",
