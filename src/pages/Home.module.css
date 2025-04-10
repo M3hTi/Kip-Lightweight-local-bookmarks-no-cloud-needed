@@ -14,20 +14,25 @@
   background-color: var(--primaryBg);
 }
 
+.headerText h1,
+.headerText p {
+  margin: 10px;
+}
+
 .headerText h1 {
   font-weight: 900;
   font-size: 3rem;
   line-height: 62px;
   text-align: center;
   letter-spacing: 0.2px;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .headerText p {
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  color: #e5e5e5;
+  /* color: #e5e5e5; */
   text-wrap: balance;
 }
 
@@ -64,8 +69,8 @@
 }
 
 .btnTransparent {
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid #112d57;
+  color: #112d57;
   box-sizing: border-box;
 }
 
