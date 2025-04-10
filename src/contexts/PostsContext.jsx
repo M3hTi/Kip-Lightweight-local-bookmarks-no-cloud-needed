@@ -16,6 +16,8 @@ function reducer(state, action) {
       return { ...state, posts: action.payload, status: "ready" };
     case "idle":
       return { ...state, status: "idle" };
+    case "post/create":
+      return { ...state, posts: [...state.posts, action.payload] };
     default:
       throw new Error("Unknown Action!");
   }
@@ -49,11 +51,28 @@ function PostsProvider({ children }) {
 
   const { posts, status } = state;
 
+  async function addPost(newPost) {
+    try {
+      const res = await fetch(`http://localhost:8000/posts`, {
+        method: "POST",
+        body: JSON.stringify(newPost),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      dispatch({ type: "post/create", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <PostsContext.Provider
       value={{
         posts,
         status,
+        addPost,
       }}
     >
       {children}
