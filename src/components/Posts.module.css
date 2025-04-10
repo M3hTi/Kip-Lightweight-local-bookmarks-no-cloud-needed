@@ -5,6 +5,14 @@
 .headerPosts {
   text-align: center;
 }
+
 .headerPosts h3 {
   margin: 10px;
+}
+
+.spinnerContainer {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
