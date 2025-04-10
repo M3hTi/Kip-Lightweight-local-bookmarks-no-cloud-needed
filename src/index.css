@@ -15,3 +15,8 @@ body {
   font-size: 1.5rem;
   /* color: white; */
 }
+
+.errMsg {
+  color: red;
+  font-size: 12px;
+}
