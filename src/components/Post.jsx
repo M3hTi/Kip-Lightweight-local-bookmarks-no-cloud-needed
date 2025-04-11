@@ -2,9 +2,12 @@ import React from "react";
 import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
 import Tag from "./Tag";
+import { usePosts } from "../contexts/PostsContext";
 
 const Post = ({ postObj }) => {
   const { body, date, tags, title, url, id } = postObj;
+
+  const { deletePost } = usePosts();
 
   const formattedDate = new Date(date).toLocaleDateString("en", {
     year: "numeric",
@@ -18,6 +21,10 @@ const Post = ({ postObj }) => {
     return words.slice(0, wordCount).join(" ") + "...";
   };
 
+  function handleDelete() {
+    deletePost(id);
+  }
+
   return (
     <article className={styles.post}>
       <div className={styles.postHeader}>
@@ -26,6 +33,9 @@ const Post = ({ postObj }) => {
       </div>
       <div className={styles["post-body"]}>
         <p>{truncateText(body, 20)}</p>
+        <div>
+          <button onClick={handleDelete}>Delete Post</button>
+        </div>
       </div>
       <div className={styles["post-footer"]}>
         <div className={styles["post-comments"]}>
