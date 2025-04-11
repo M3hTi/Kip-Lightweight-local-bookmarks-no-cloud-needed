@@ -1,12 +1,76 @@
-# React + Vite
+# Kip - Lightweight Local Bookmarks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kip is a simple, local bookmarking tool that helps you save and organize your favorite links without relying on the cloud. Keep your bookmarks private and easily accessible, all in one place.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 Local Authentication
+- 📑 Create and manage bookmarks
+- 🏷️ Tag-based organization
+- 🎨 Clean and intuitive user interface
+- 📱 Responsive design
+- 🔍 View detailed bookmark information
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- React Router v7
+- React Hook Form
+- JSON Server (for local data storage)
+- Vite
+- CSS Modules
+- LottieFiles for animations
+- ESLint for code quality
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the JSON server (for bookmark storage):
+
+```bash
+npm run server
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+## Default Login Credentials
+
+- Username: admin
+- Password: admin
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run server` - Start the JSON server for data storage
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+src/
+  ├── components/     # Reusable UI components
+  ├── contexts/      # React Context providers
+  ├── pages/         # Page components
+  ├── assets/        # Static assets
+  └── App.jsx        # Main application component
+```
+
+## Contributing
+
+Feel free to open issues and pull requests. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
