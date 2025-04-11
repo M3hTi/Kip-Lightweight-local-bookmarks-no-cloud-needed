@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import styles from "./Contact.module.css";
 import Error from "../components/Error";
+
+import { IoHome } from "react-icons/io5";
+import { Link } from "react-router-dom";
 function Contact() {
   const {
     register,
@@ -59,6 +62,11 @@ function Contact() {
           </form>
         </div>
       </div>
+      <button>
+        <Link to="/" className={styles.homeButton}>
+          <IoHome className={styles.homeIcon} />
+        </Link>
+      </button>
     </main>
   );
 }
