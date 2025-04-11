@@ -4,6 +4,7 @@ const PostsContext = createContext();
 
 const initialState = {
   posts: [],
+  selectedPost: {},
   //   idle, loading, ready
   status: "idle",
 };
@@ -11,13 +12,24 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, status: "loading" };
+      return { ...state, status: "loading", selectedPost: {} };
     case "getPosts":
-      return { ...state, posts: action.payload, status: "ready" };
+      return {
+        ...state,
+        posts: action.payload,
+        status: "ready",
+      };
     case "idle":
       return { ...state, status: "idle" };
     case "post/create":
       return { ...state, posts: [...state.posts, action.payload] };
+    case "post/delete":
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.payload),
+      };
+    case "getPost":
+      return { ...state, selectedPost: action.payload, status: "ready" };
     default:
       throw new Error("Unknown Action!");
   }
@@ -49,7 +61,20 @@ function PostsProvider({ children }) {
     return () => controller.abort();
   }, []);
 
-  const { posts, status } = state;
+  const { posts, selectedPost, status } = state;
+
+  async function getPost(id) {
+    try {
+      dispatch({ type: "loading" });
+      const res = await fetch(`http://localhost:8000/posts/${id}`);
+      if (!res.ok) throw new Error(`Error: ${res.statusText}`);
+
+      const data = await res.json();
+      dispatch({ type: "getPost", payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function addPost(newPost) {
     try {
@@ -67,12 +92,26 @@ function PostsProvider({ children }) {
     }
   }
 
+  async function deletePost(id) {
+    try {
+      await fetch(`http://localhost:8000/posts/${id}`, {
+        method: "DELETE",
+      });
+      dispatch({ type: "post/delete", payload: id });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <PostsContext.Provider
       value={{
         posts,
         status,
+        getPost,
         addPost,
+        selectedPost,
+        deletePost
       }}
     >
       {children}
