@@ -2,39 +2,58 @@ import { useParams } from "react-router-dom";
 import { usePosts } from "../contexts/PostsContext";
 import Tag from "./Tag";
 import styles from "./SelectedPost.module.css";
+import { useEffect } from "react";
+import Spinner from "./Spinner";
 function SelectedPost() {
   const { id } = useParams();
-  const { posts } = usePosts();
+  const { getPost, selectedPost, status } = usePosts();
 
-  const matchPost = posts.find((post) => post.id === id);
+  useEffect(() => {
+    getPost(id);
+  }, [id]);
 
-  const { title, body, date, url, tags } = matchPost;
+  const { title, body, date, tags, url } = selectedPost;
 
   const formattedDate = new Date(date).toLocaleDateString("en", {
     year: "numeric",
-    day: "numeric",
-    month: "long",
+    month: "2-digit",
+    day: "2-digit",
   });
 
   return (
-    <article className={styles.selectedPost}>
-      <div className={styles.postHeader}>
-        <h1 className={styles["post-title"]}>{title}</h1>
-        <span className={styles["post-date"]}>{formattedDate}</span>
-      </div>
-
-      <div className={styles["post-body"]}>
-        <p>{body}</p>
-      </div>
-
-      <div className={styles["post-footer"]}>
-        <div className={styles["post-tags"]}>
-          {tags.map((tag) => (
-            <Tag tag={tag} />
-          ))}
+    <div>
+      {status === "loading" && (
+        <div className={styles.spinnerContainer}>
+          <Spinner />
         </div>
-      </div>
-    </article>
+      )}
+      {status === "ready" && (
+        <article className={styles.selectedPost}>
+          <div className={styles.postHeader}>
+            <h1 className={styles["post-title"]}>{title}</h1>
+            <span className={styles["post-date"]}>{formattedDate}</span>
+          </div>
+
+          <div className={styles["post-body"]}>
+            {url && (
+              <p>
+                {" "}
+                <a href={url} target="_blank">
+                  {url}
+                </a>
+              </p>
+            )}
+            <p>{body}</p>
+          </div>
+
+          <div className={styles["post-footer"]}>
+            <div className={styles["post-tags"]}>
+              {tags && tags.map((tag, i) => <Tag tag={tag} key={i} />)}
+            </div>
+          </div>
+        </article>
+      )}
+    </div>
   );
 }
 
