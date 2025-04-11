@@ -30,6 +30,30 @@
   margin: 1rem 0;
   color: #444;
   line-height: 1.6;
+  display: flex;
+  /* align-items: center; */
+}
+
+.post-body p {
+  flex: 1;
+}
+
+.post-body div {
+  width: 10%;
+}
+
+.post-body button {
+  background-color: rgb(241, 49, 49);
+  border: none;
+  border-radius: 30px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+   transition: background-color 0.2s;
+
+  &:hover{
+    background-color: rgb(241, 24, 24);
+  }
 }
 
 .post-footer {
