@@ -1,0 +1,13 @@
+.container {
+  background-color: var(--primaryBg);
+  min-height: 100vh;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 500px;
+}
