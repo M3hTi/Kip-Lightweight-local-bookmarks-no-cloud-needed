@@ -11,6 +11,7 @@
     "server": "json-server --watch data/posts.json --port 8000"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@lottiefiles/dotlottie-react": "^0.13.3",
     "ldrs": "^1.1.6",
     "nanoid": "^5.1.5",
@@ -19,7 +20,8 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.5.0"
+    "react-router-dom": "^7.5.0",
+    "react-scan": "^0.3.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
