@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useEffect } from "react";
 
 function Home() {
+
+  useEffect(() => {
+    document.title = "Kip // Lightweight local bookmarks, no cloud needed"
+  }, [])
   return (
     <div className={styles.homeContainer}>
       <div className={styles.headerText}>
