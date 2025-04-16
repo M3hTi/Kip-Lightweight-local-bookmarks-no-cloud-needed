@@ -22,6 +22,10 @@ function Login() {
     }
   }, [isAuthenticate, navigate]);
 
+  useEffect(() => {
+    document.title = "login"
+  },[])
+
   function submit(data) {
     console.log("submitted");
     // console.log(data);
