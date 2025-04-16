@@ -5,7 +5,7 @@ import styles from "./Posts.module.css";
 import Spinner from "./Spinner";
 
 function Posts() {
-  const { posts, status } = usePosts();
+  const { posts, status, selectedTag, clearSelectedTag } = usePosts();
 
   useEffect(() => {
     document.title = "Your Saved Posts";
@@ -21,6 +21,11 @@ function Posts() {
         <div className={styles.posts}>
           <div className={styles.headerPosts}>
             <h6>You have {posts.length} posts</h6>
+
+            <span>
+              selected Tag : {selectedTag || "You didn't select any Tag yet"}
+            </span>
+            <button onClick={clearSelectedTag}>Clear Selected Tag</button>
           </div>
           <div>
             {posts.map((post) => (
