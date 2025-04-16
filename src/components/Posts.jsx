@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { usePosts } from "../contexts/PostsContext";
 import Post from "./Post";
 import styles from "./Posts.module.css";
@@ -5,6 +6,10 @@ import Spinner from "./Spinner";
 
 function Posts() {
   const { posts, status } = usePosts();
+
+  useEffect(() => {
+    document.title = "Your Saved Posts";
+  }, []);
   return (
     <div>
       {status === "loading" && (
