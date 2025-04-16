@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 const PostsContext = createContext();
 
@@ -63,7 +69,7 @@ function PostsProvider({ children }) {
 
   const { posts, selectedPost, status } = state;
 
-  async function getPost(id) {
+  const getPost = useCallback(async function getPost(id) {
     try {
       dispatch({ type: "loading" });
       const res = await fetch(`http://localhost:8000/posts/${id}`);
@@ -74,7 +80,7 @@ function PostsProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }
+  }, []);
 
   async function addPost(newPost) {
     try {
@@ -111,7 +117,7 @@ function PostsProvider({ children }) {
         getPost,
         addPost,
         selectedPost,
-        deletePost
+        deletePost,
       }}
     >
       {children}
