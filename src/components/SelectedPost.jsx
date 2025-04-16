@@ -10,9 +10,13 @@ function SelectedPost() {
 
   useEffect(() => {
     getPost(id);
-  }, [id]);
+  }, [id, getPost]);
 
   const { title, body, date, tags, url } = selectedPost;
+
+  useEffect(() => {
+    document.title = `${title}`;
+  }, [title]);
 
   const formattedDate = new Date(date).toLocaleDateString("en", {
     year: "numeric",
