@@ -41,7 +41,7 @@ const Post = ({ postObj }) => {
         <div className={styles["post-comments"]}>
           <span>
             {tags.map((tag) => (
-              <Tag tag={tag} />
+              <Tag tag={tag} key={tag} />
             ))}
           </span>
 
