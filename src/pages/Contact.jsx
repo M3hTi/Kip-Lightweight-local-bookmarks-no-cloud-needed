@@ -5,8 +5,27 @@ import emailjs from "@emailjs/browser";
 
 import { IoHome } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
+import { SiPanasonic } from "react-icons/si";
+const initialState = {
+  isFormSubmitted: false,
+  message: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "submitForm":
+      return { ...state, isFormSubmitted: true, message: action.payload };
+    case "sendFaild":
+      return initialState;
+    default:
+      throw new Error("Unknown Action!");
+  }
+}
 function Contact() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { isFormSubmitted, message } = state;
   const {
     register,
     handleSubmit,
@@ -31,11 +50,13 @@ function Contact() {
           reply_to: email,
           message,
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        dispatch({ type: "submitForm", payload: "Your Form is Submitted..." })
       )
       .then(
         (result) => {
           reset();
+          dispatch({ type: "sendFaild" });
         },
         (error) => {
           console.log("Failed:", error.text);
@@ -44,7 +65,14 @@ function Contact() {
   }
   return (
     <main>
-      <div className={styles.sectionContainer}>
+      {isFormSubmitted && (
+        <span className={styles["submit-message"]}>{message}</span>
+      )}
+      <div
+        className={`${styles.sectionContainer} ${
+          isFormSubmitted ? styles.submit : ""
+        }`}
+      >
         <div className={styles.headerContainer}>
           <h1>Get in touch.</h1>
           <p>Interested to collaborate? Feel free to drop me an email.</p>
