@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser";
 
 import { IoHome } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 function Contact() {
   const {
     register,
@@ -12,6 +13,10 @@ function Contact() {
     formState: { errors },
     reset,
   } = useForm();
+
+  useEffect(() => {
+    document.title = "contact me";
+  }, []);
 
   function submit(data) {
     console.log("submitted");
