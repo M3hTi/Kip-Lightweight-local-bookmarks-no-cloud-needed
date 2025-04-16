@@ -9,8 +9,10 @@ import {
 const PostsContext = createContext();
 
 const initialState = {
+  allPosts: [],
   posts: [],
   selectedPost: {},
+  selectedTag: null,
   //   idle, loading, ready
   status: "idle",
 };
@@ -18,24 +20,49 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "loading":
-      return { ...state, status: "loading", selectedPost: {} };
+      return {
+        ...state,
+        status: "loading",
+        selectedPost: {},
+        selectedTag: null,
+      };
     case "getPosts":
       return {
         ...state,
         posts: action.payload,
+        allPosts: action.payload,
         status: "ready",
       };
     case "idle":
       return { ...state, status: "idle" };
     case "post/create":
-      return { ...state, posts: [...state.posts, action.payload] };
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+        allPosts: [...state.allPosts, action.payload],
+      };
     case "post/delete":
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload),
+        allPosts: state.allPosts.filter((post) => post.id !== action.payload),
       };
     case "getPost":
       return { ...state, selectedPost: action.payload, status: "ready" };
+    case "clearTag":
+      return { ...state, selectedTag: null, posts: [...state.allPosts] };
+    case "filterPostsByTag":
+      return {
+        ...state,
+        selectedTag: action.payload.trim(),
+        posts: state.posts.filter((post) =>
+          post.tags.some(
+            (tag) =>
+              tag.toLowerCase().trim() === action.payload.toLowerCase().trim()
+          )
+        ),
+      };
+
     default:
       throw new Error("Unknown Action!");
   }
@@ -43,6 +70,8 @@ function reducer(state, action) {
 
 function PostsProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { posts, selectedPost, status, selectedTag } = state;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -66,8 +95,6 @@ function PostsProvider({ children }) {
 
     return () => controller.abort();
   }, []);
-
-  const { posts, selectedPost, status } = state;
 
   const getPost = useCallback(async function getPost(id) {
     try {
@@ -109,15 +136,26 @@ function PostsProvider({ children }) {
     }
   }
 
+  function filterPostsByTag(tag) {
+    dispatch({ type: "filterPostsByTag", payload: tag });
+  }
+
+  function clearSelectedTag() {
+    dispatch({ type: "clearTag" });
+  }
+
   return (
     <PostsContext.Provider
       value={{
         posts,
         status,
+        selectedTag,
         getPost,
         addPost,
         selectedPost,
         deletePost,
+        filterPostsByTag,
+        clearSelectedTag,
       }}
     >
       {children}
