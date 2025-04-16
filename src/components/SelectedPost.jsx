@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { usePosts } from "../contexts/PostsContext";
 import Tag from "./Tag";
 import styles from "./SelectedPost.module.css";
@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 function SelectedPost() {
   const { id } = useParams();
   const { getPost, selectedPost, status } = usePosts();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPost(id);
@@ -54,6 +55,7 @@ function SelectedPost() {
             <div className={styles["post-tags"]}>
               {tags && tags.map((tag, i) => <Tag tag={tag} key={i} />)}
             </div>
+            <button onClick={() => navigate("/app/posts")}> &larr;Back </button>
           </div>
         </article>
       )}
