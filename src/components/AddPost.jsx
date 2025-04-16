@@ -48,6 +48,11 @@ function AddPost() {
     return () => clearTimeout(timer);
   }, [reset, isFormSubmitted]);
 
+
+  useEffect(() => {
+    document.title = "Add New Post"
+  },[])
+
   function submit(data) {
     console.log("submitted");
     // console.log(data);
